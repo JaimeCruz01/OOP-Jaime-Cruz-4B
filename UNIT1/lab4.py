@@ -17,65 +17,86 @@ class Producto:
     def set_precio(self, precio):
         if precio >= 0:
             self.__precio = precio
+        else:
+            print("El precio no puede ser negativo.")
 
     def get_tipo(self):
         return self.__tipo
 
     def set_tipo(self, tipo):
-        self.__tipo = tipo
+        if tipo == "electronico" or tipo == "ropa" or tipo == "alimento":
+            self.__tipo = tipo
+        else:
+            print("Tipo de producto no válido.")
 
 
 class Pedido:
     def __init__(self, numero, cliente):
-        self.numero = numero
-        self.cliente = cliente
-        self.productos = []
-        self.estado = "CREADO"
+        self.__numero = numero
+        self.__cliente = cliente
+        self.__productos = []
+        self.__estado = "CREADO"
 
     def agregar_producto(self, producto):
-        self.productos.append(producto)
+
+        if isinstance(producto, Producto):
+            self.__productos.append(producto)
+        else:
+            print("Solo se pueden agregar productos.")
+
+    def get_productos(self):
+        return self.__productos.copy()
 
     def calcular_total(self):
         total = 0
 
-        for producto in self.productos:
+        for producto in self.__productos:
 
-            if producto.tipo == "electronico":
-                total += producto.precio * 1.16
+            if producto.get_tipo() == "electronico":
+                total += producto.get_precio() * 1.16
 
-            elif producto.tipo == "ropa":
-                total += producto.precio * 1.08
+            elif producto.get_tipo() == "ropa":
+                total += producto.get_precio() * 1.08
 
-            elif producto.tipo == "alimento":
-                total += producto.precio * 1.00
+            elif producto.get_tipo() == "alimento":
+                total += producto.get_precio() * 1.00
 
         return total
 
     def cambiar_estado(self, nuevo_estado):
-        self.estado = nuevo_estado
 
+        if (nuevo_estado == "CREADO" or
+            nuevo_estado == "ENVIADO" or
+            nuevo_estado == "ENTREGADO" or
+            nuevo_estado == "CANCELADO"):
+
+            self.__estado = nuevo_estado
+
+        else:
+            print("Estado no válido.")
+
+    # Mostrar pedido
     def mostrar_pedido(self):
-        print(f"\nPedido #{self.numero}")
-        print(f"Cliente: {self.cliente}")
-        print(f"Estado: {self.estado}")
+        print(f"\nPedido #{self.__numero}")
+        print(f"Cliente: {self.__cliente}")
+        print(f"Estado: {self.__estado}")
 
         print("\nProductos:")
 
-        for producto in self.productos:
+        for producto in self.__productos:
             print(
-                f"- {producto.nombre}: "
-                f"${producto.precio:.2f}"
+                f"- {producto.get_nombre()}: "
+                f"${producto.get_precio():.2f}"
             )
 
         print(f"\nTotal: ${self.calcular_total():.2f}")
 
 
-# main program
-
 pedido = Pedido(1001, "Ana")
 
 pedido.agregar_producto(
     Producto("Laptop", 15000, "electronico")
+    print(producto.nombre)
 )
 
 pedido.agregar_producto(
@@ -90,4 +111,4 @@ pedido.mostrar_pedido()
 
 pedido.cambiar_estado("ENVIADO")
 
-print("\nNuevo estado:", pedido.estado)
+print("\nNuevo estado:", "ENVIADO")
