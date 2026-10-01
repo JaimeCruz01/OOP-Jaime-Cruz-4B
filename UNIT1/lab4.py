@@ -96,7 +96,6 @@ pedido = Pedido(1001, "Ana")
 
 pedido.agregar_producto(
     Producto("Laptop", 15000, "electronico")
-    print(producto.nombre)
 )
 
 pedido.agregar_producto(
