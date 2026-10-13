@@ -1,6 +1,6 @@
-from books import book
-from users import user
-from library import library
+from UNIT2.lab5.books import book
+from UNIT2.lab5.users import user
+from UNIT2.lab5.library import library
 
 book1 = book("1","OPP Fundamentals", "Jhon L", "Cocomelon")
 book2 = book("2","OPP Fundamentals2", "Jhon L2", "Cocomelon2")
