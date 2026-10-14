@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import messagebox
 from Model.login_model import User
 from .home_view import DashboardVentana
+from PIL import Image, ImageTk
 
 
 class LoginVentana:
@@ -20,6 +21,14 @@ class LoginVentana:
         # Título
         lbl_titulo = tk.Label(self.root, text="Iniciar Sesión", font=("Helvetica", 16, "bold"))
         lbl_titulo.pack(pady=25)
+
+        img = Image.open("UNIT2/lab7_Jaime_cruz/assets/icon.png")
+        img = img.resize((75, 75))
+        img_logo = ImageTk.PhotoImage(img)
+
+        lbl_logo = tk.Label(self.root, image=img_logo)
+        lbl_logo.image = img_logo
+        lbl_logo.pack(pady=10)
 
         # Campo Usuario
         lbl_usuario = tk.Label(self.root, text="Usuario:", font=("Helvetica", 10))
