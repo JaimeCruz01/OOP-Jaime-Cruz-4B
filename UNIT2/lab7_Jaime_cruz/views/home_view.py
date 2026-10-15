@@ -1,9 +1,9 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 from Model.products_model import Producto
-    
+
 class DashboardVentana:
-    def _init_(self, root, nombre_usuario):
+    def __init__(self, root, nombre_usuario):
         self.root = root
         self.root.title("Panel Principal - Sistema")
         self.root.geometry("900x650")

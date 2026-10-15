@@ -68,8 +68,8 @@ class LoginVentana:
         datos_usuario = usuario_obj.autenticar()
 
         if datos_usuario:
-            messagebox.showinfo("Bienvenido", f"¡Hola {datos_usuario['nombre']}! Acceso concedido.")
-            self._abrir_dashboard(datos_usuario['nombre'])
+            messagebox.showinfo("Bienvenido", f"¡Hola {datos_usuario['username']}! Acceso concedido.")
+            self._abrir_dashboard(datos_usuario['username'])
         else:
             messagebox.showerror("Error de Acceso", "Usuario o contraseña incorrectos.")
 

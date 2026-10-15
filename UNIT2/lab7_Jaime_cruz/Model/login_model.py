@@ -15,6 +15,7 @@ class User:
 
         if result:
             print("Encontrado")
+            print(result[0])
             return result[0]
 
         print("No encontrado")
